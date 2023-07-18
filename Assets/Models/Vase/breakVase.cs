@@ -5,6 +5,7 @@ using UnityEngine;
 public class breakVase : MonoBehaviour
 {
     [SerializeField] GameObject fractured;
+    [SerializeField] float BreakHeight;
     public float breakForce;
     Vector3 startPosition;
     Vector3 currentPosition;
@@ -22,7 +23,7 @@ public class breakVase : MonoBehaviour
     {
         currentPosition = transform.position;
         distance = Vector3.Distance(startPosition, currentPosition);
-        if (distance > 0.5) {
+        if (distance > BreakHeight) {
             BreakIt();
         }
 
