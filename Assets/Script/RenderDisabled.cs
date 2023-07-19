@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class RenderDisabled : MonoBehaviour
 {
+    public int Count { get; private set; }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +33,39 @@ public class RenderDisabled : MonoBehaviour
         foreach (Transform child in parent.transform)
         {
             DisableGameObjectAndChildren(child.gameObject);
+        }
+    }
+
+    void EnableGameObjectAndChildren(GameObject parent)
+    {
+        parent.layer = LayerMask.NameToLayer("Default");
+        if (parent.GetComponent<Renderer>() != null)
+        {
+            parent.GetComponent<Renderer>().enabled = true;
+        }
+        if (parent.GetComponent<Rigidbody>() != null)
+        {
+            parent.GetComponent<Rigidbody>().useGravity = true;
+        }
+
+        foreach (Transform child in parent.transform)
+        {
+            EnableGameObjectAndChildren(child.gameObject);
+        }
+    }
+
+    public void Increment()
+    {
+        Count++;
+        EnableGameObjectAndChildren(gameObject);
+    }
+
+    public void Decrement()
+    {
+        Count--;
+        if (Count <= 0)
+        {
+            DisableGameObjectAndChildren(gameObject);
         }
     }
 }

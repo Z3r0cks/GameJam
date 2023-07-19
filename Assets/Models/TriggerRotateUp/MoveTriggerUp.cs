@@ -5,22 +5,48 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class MoveTriggerUp : MonoBehaviour
 {
     [SerializeField]
-    private Light Light;
+    private Light LightToTurnOn;
+
+    [SerializeField]
+    private Light LightToTurnOff;
+
+    [SerializeField]
+    private GameObject Cone;
+
+    [SerializeField]
+    private GameObject ThisCone;
+
+    [SerializeField]
+    private GameObject Flashlight;
+
+    [SerializeField]
+    private Light Spotlight;
+
+    [SerializeField]
+    private GameObject FlashlightCone;
+
     private Animator anim;
     public AudioSource audioData;
     public AudioClip clip;
-    public AudioClip successClip;
+
+    // // public AudioClip successClip;
     private bool triggerPushed = false; //Hebel wurde bewegt, soll nur einmal passieren
-    private XRDirectInteractor directInteractor;
 
     // Start is called before the first frame update
     void Start()
     {
         audioData = GetComponent<AudioSource>();
         anim = this.GetComponent<Animator>();
-        directInteractor = GetComponent<XRDirectInteractor>();
-        directInteractor.selectEntered.AddListener(OnSelectEnter);
-        // directInteractor.selectExited.AddListener(OnSelectExit);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!triggerPushed && other.name != "Cone")
+        {
+            triggerPushed = true;
+            // Light.enabled = false;
+            StartCoroutine(PlayAnimationAndSound());
+        }
     }
 
     private void OnSelectEnter(SelectEnterEventArgs args)
@@ -31,11 +57,19 @@ public class MoveTriggerUp : MonoBehaviour
 
     IEnumerator PlayAnimationAndSound()
     {
+        Cone.transform.localScale = new Vector3(0.57f, 0.67f, 0.57f);
         anim.SetTrigger("StartTriggerRotateUp");
         audioData.PlayOneShot(clip);
 
         yield return new WaitForSeconds(1);
-
-        Light.enabled = true;
+        
+        LightToTurnOff.enabled = false;
+        LightToTurnOn.enabled = true;
+        Spotlight.enabled = true;
+        ThisCone.transform.localScale = new Vector3(0.0f, 0.0f, 0.0f);
+        // FlashlightCone.transform.localScale = new Vector3(0.03f, 0.03f, 0.03f);
+        // Flashlight.gameObject.GetComponent<MeshRenderer>().enabled = true;
+        // Flashlight.gameObject.tag = "Static";
+        Flashlight.SetActive(true);
     }
 }
