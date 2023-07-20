@@ -5,7 +5,9 @@ using UnityEngine;
 public class panelsFallDown : MonoBehaviour
 {
     Rigidbody woodPanel;
-    [SerializeField] Renderer wardrobe;
+
+    [SerializeField]
+    Renderer wardrobe;
     bool startAudio;
 
     // Start is called before the first frame update
@@ -13,7 +15,6 @@ public class panelsFallDown : MonoBehaviour
     {
         woodPanel = this.GetComponent<Rigidbody>();
         startAudio = true;
-        
     }
 
     // Update is called once per frame
@@ -22,13 +23,7 @@ public class panelsFallDown : MonoBehaviour
         if (!wardrobe.enabled && woodPanel.GetComponent<Renderer>().enabled)
         {
             woodPanel.isKinematic = false;
-            
         }
-        else
-        {
-            woodPanel.isKinematic = true;
-        }
-
     }
 
     void OnCollisionEnter(Collision collision)
@@ -39,7 +34,5 @@ public class panelsFallDown : MonoBehaviour
             audio.Play();
             startAudio = false;
         }
-
-        
     }
 }

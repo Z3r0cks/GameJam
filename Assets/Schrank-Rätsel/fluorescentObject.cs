@@ -21,7 +21,7 @@ public class fluorescentObject : MonoBehaviour
         }
         else
         {
-            Debug.Log("material not emissive");
+            // Debug.Log("material not emissive");
         }
 
         brightness = 0.1f;
@@ -35,11 +35,13 @@ public class fluorescentObject : MonoBehaviour
 
         if (material.GetColor("_EmissionColor").r > .001 && inTrigger == false)
         {
-            brightness -= .001f;
+            brightness -= .01f;
         }
         else if (material.GetColor("_EmissionColor").r <= .001)
         {
             rend.enabled = false;
+            
+            // Debug.Log(material.GetColor("_EmissionColor").r);
         }
 
         color = new Color(
@@ -62,7 +64,7 @@ public class fluorescentObject : MonoBehaviour
             if (material.GetColor("_EmissionColor").r < 1)
             {
                 brightness += .4f;
-                Debug.Log(material.GetColor("_EmissionColor").r);
+                // Debug.Log(material.GetColor("_EmissionColor").r);
             }
             color = new Color(
                 color.r * Mathf.Pow(2, brightness),
