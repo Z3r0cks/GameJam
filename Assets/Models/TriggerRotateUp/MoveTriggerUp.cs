@@ -58,7 +58,7 @@ public class MoveTriggerUp : MonoBehaviour
     IEnumerator PlayAnimationAndSound()
     {
         Cone.transform.localScale = new Vector3(0.57f, 0.67f, 0.57f);
-        anim.SetTrigger("StartTriggerRotateUp");
+        anim.SetTrigger("triggerHebel");
         audioData.PlayOneShot(clip);
 
         yield return new WaitForSeconds(1);

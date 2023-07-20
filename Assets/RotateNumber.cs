@@ -7,9 +7,6 @@ public class RotateNumber : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Triggered");
-        Debug.Log(other.name);
-        Debug.Log(other.name != "Cone");
         if (other.name != "Cone" && Time.time > nextActionTime)
         {
             Debug.Log("Rotated");

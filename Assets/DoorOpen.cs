@@ -18,7 +18,6 @@ public class DoorOpen : MonoBehaviour
 
     public void NotifyBoardRemoved()
     {
-        Debug.Log("Board removed");
         removedBoards++;
         if (removedBoards >= totalBoards)
         {

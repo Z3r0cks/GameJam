@@ -8,6 +8,9 @@ public class fluorescentObject : MonoBehaviour
     Material material;
     Color initialColor;
     float brightness;
+
+    [SerializeField]
+    private float brightnessFactor;
     bool inTrigger;
 
     // Start is called before the first frame update
@@ -35,12 +38,12 @@ public class fluorescentObject : MonoBehaviour
 
         if (material.GetColor("_EmissionColor").r > .001 && inTrigger == false)
         {
-            brightness -= .01f;
+            brightness -= brightnessFactor; //before: 0.01f
         }
         else if (material.GetColor("_EmissionColor").r <= .001)
         {
             rend.enabled = false;
-            
+
             // Debug.Log(material.GetColor("_EmissionColor").r);
         }
 

@@ -4,29 +4,21 @@ using UnityEngine;
 
 public class putHandleIn : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject handle;
 
-    public GameObject handle;
-    public GameObject device;
-    public GameObject deviceHandle;
+    [SerializeField]
+    private GameObject deviceHandle;
+
     // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+    void Start() { }
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject == handle)
+        if (other.name == "handle")
         {
-            Debug.Log("ich berühre das Gerät");
             deviceHandle.SetActive(true); //replaces device with handle
-            device.SetActive(false); //removes device without handle
+            this.gameObject.SetActive(false); //removes device without handle
             handle.SetActive(false); //removes handle in hand
         }
     }
