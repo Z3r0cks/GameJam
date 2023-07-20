@@ -12,6 +12,12 @@ public class LightCollider : MonoBehaviour
         {
             other.gameObject.tag = "Static";
         }
+
+        if (other.name == "handle")
+        {
+            Debug.Log("handle");
+            other.GetComponent<Rigidbody>().isKinematic = false;
+        }
     }
 
     void OnTriggerExit(Collider other)
@@ -29,7 +35,7 @@ public class LightCollider : MonoBehaviour
             emissionColor = 0f;
         }
 
-        if (other.gameObject.tag != "Static" && other.name != "Cone" && emissionColor <= .001 && other.name == "handle")
+        if (other.gameObject.tag != "Static" && other.name != "Cone" && emissionColor <= .001)
         {
             other.GetComponent<RenderDisabled>()?.Decrement();
         }
