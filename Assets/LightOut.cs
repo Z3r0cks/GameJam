@@ -10,6 +10,9 @@ public class LightOut : MonoBehaviour
     [SerializeField]
     GameObject emmissionObject;
 
+    [SerializeField]
+    GameObject Cone;
+
     void OnTriggerEnter(Collider other)
     {
         if (other.name == "Right Hand" || other.name == "Left Hand")
@@ -26,12 +29,14 @@ public class LightOut : MonoBehaviour
             this.gameObject.tag = "Static";
             Material material = emmissionObject.GetComponent<Renderer>().material;
             material.SetColor("_EmissionColor", Color.white);
+            Cone.SetActive(true); // Toggle cone active state
         }
-        else
+        if (light.enabled == false)
         {
             this.gameObject.tag = "Untagged";
             Material material = emmissionObject.GetComponent<Renderer>().material;
             material.SetColor("_EmissionColor", Color.black);
+            Cone.SetActive(false); // Toggle cone active state
         }
     }
 }

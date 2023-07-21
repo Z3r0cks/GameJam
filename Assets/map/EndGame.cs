@@ -50,7 +50,7 @@ public class EndGame : MonoBehaviour
         if (leverPushedCount == 3)
         {
             text.SetActive(true);
-            StartCoroutine(TurnOffLightsAfterDelay(5));
+            StartCoroutine(TurnOffLightsAfterDelay(10));
         }
     }
 
