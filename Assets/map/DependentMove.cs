@@ -15,25 +15,28 @@ public class DependentMove : MonoBehaviour
     [SerializeField] private Material greenMaterial;
     [SerializeField] private EndGame endGame;
 
+    private bool isFirstPushed =false;
+
     // Start is called before the first frame update
     void Start()
     {
         //gets size of room and size of map to get scale in which models move
-        // scale= (map.GetComponent<Renderer>().bounds.size.x)/(room.GetComponent<Renderer>().bounds.size.x);
-        //getGreen();
+        scale= (map.GetComponent<Renderer>().bounds.size.x)/(room.GetComponent<Renderer>().bounds.size.x);
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        // a = new Vector3(obj.transform.position.x * scale, transform.position.y, obj.transform.position.z * scale);
-        // transform.position = a;
+        a = new Vector3(obj.transform.position.x * scale, transform.position.y, obj.transform.position.z * scale);
+        transform.position = a;
 
-        // if (objAnimator.GetBool("triggerHebel"))
-        // {
-        //     GetComponent<Renderer>().material = greenMaterial;
-        //     endGame.CountLeversPushed();
-        // }
+        if (objAnimator.GetBool("triggerHebel") && !isFirstPushed)
+        {
+            GetComponent<Renderer>().material = greenMaterial;
+            endGame.CountLeversPushed();
+            isFirstPushed = true;
+        }
     }
 
 }

@@ -10,6 +10,9 @@ public class putHandleIn : MonoBehaviour
     [SerializeField]
     private GameObject deviceHandle;
 
+    [SerializeField] private GameObject objSmallDevice;
+    [SerializeField] private GameObject objSmallHandle;
+
     // Start is called before the first frame update
     void Start() { }
 
@@ -20,6 +23,8 @@ public class putHandleIn : MonoBehaviour
             deviceHandle.SetActive(true); //replaces device with handle
             this.gameObject.SetActive(false); //removes device without handle
             handle.SetActive(false); //removes handle in hand
+            objSmallDevice.SetActive(false); //shows small object
+            objSmallHandle.SetActive(false); //shows small object
         }
     }
 }
