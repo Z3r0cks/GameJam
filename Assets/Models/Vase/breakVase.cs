@@ -1,15 +1,16 @@
-using System.Collections;
+    using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class breakVase : MonoBehaviour
 {
     [SerializeField] GameObject fractured;
-    [SerializeField] float BreakHeight;
     public float breakForce;
     Vector3 startPosition;
     Vector3 currentPosition;
     float distance;
+
+    public float fallingHeight;
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +24,7 @@ public class breakVase : MonoBehaviour
     {
         currentPosition = transform.position;
         distance = Vector3.Distance(startPosition, currentPosition);
-        if (distance > BreakHeight) {
+        if (distance > fallingHeight) {
             BreakIt();
         }
 

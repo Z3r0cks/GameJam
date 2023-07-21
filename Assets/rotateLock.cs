@@ -12,7 +12,7 @@ public class rotateLock : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if ((other.name == "Right hand" || other.name == "Left Hand") && Time.time > nextActionTime)
+        if ((other.name == "Right Hand" || other.name == "Left Hand") && Time.time > nextActionTime)
         {
             nextActionTime = Time.time + period;
             transform.Rotate(0, 0, zAngle: 36);

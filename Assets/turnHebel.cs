@@ -19,7 +19,7 @@ public class turnHebel : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (!triggerPushed && (other.name == "Right hand" || other.name == "Left Hand"))
+        if (!triggerPushed && (other.name == "Right Hand" || other.name == "Left Hand"))
         {
             Debug.Log("in if");
             triggerPushed = true;

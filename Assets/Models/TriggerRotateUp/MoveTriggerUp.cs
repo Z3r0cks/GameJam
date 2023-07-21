@@ -25,6 +25,9 @@ public class MoveTriggerUp : MonoBehaviour
     [SerializeField]
     private GameObject FlashlightCone;
 
+    [SerializeField]
+    private GameObject Lamp;
+
     private Animator anim;
     public AudioSource audioData;
     public AudioClip clip;
@@ -62,14 +65,12 @@ public class MoveTriggerUp : MonoBehaviour
         audioData.PlayOneShot(clip);
 
         yield return new WaitForSeconds(1);
-        
+
         LightToTurnOff.enabled = false;
         LightToTurnOn.enabled = true;
         Spotlight.enabled = true;
         ThisCone.transform.localScale = new Vector3(0.0f, 0.0f, 0.0f);
-        // FlashlightCone.transform.localScale = new Vector3(0.03f, 0.03f, 0.03f);
-        // Flashlight.gameObject.GetComponent<MeshRenderer>().enabled = true;
-        // Flashlight.gameObject.tag = "Static";
+        Lamp.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.black);
         Flashlight.SetActive(true);
     }
 }
